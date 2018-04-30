@@ -1,0 +1,18 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{% url 'home' %}">BitsAcademy</a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        {% if request.user.profile.image %}
+        <img src="{{ request.user.profile.image.url }}" style="width:30px;height:30px;border-radius: 50%;"/>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <a class="p-2 text-dark" href="#"><span class="glyphicon glyphicon-user"></span>{{ request.user }}</a>
+        {% endif %}
+      </nav>
+      {% if request.user.is_authenticated %}
+      <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+      <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
+      &nbsp;&nbsp;
+      <a class="btn btn-outline-primary" href="{% url 'login' %}">login</a>
+      {% endif %}
+</div>
